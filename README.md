@@ -134,3 +134,47 @@ In the next step we are going to render these posts on the home page.
 +  }
 +`
 ```
+
+## Step 2b - Load fitting image based on viewport
+
+Render multiple variants of the post images with Contentfuls Image API and the freshly released `gatsby-plugin-image`:
+
+1. Execute: `npm i gatsby-plugin-image`
+2. Add `gatsby-plugin-image` to the plugins in your `gatsby-config.js`
+3. Adjust the query in `src/pages/index.js` to tell Gatsby to generate multiple variants of our post images:
+
+```diff
+         title
+         slug
+         image {
+-          file {
+-            url
+-          }
++          gatsbyImageData(
++            aspectRatio: 1.778
++            cropFocus: CENTER
++            layout: CONSTRAINED
++            resizingBehavior: FILL
++            placeholder: BLURRED
++          )
+         }
+```
+
+4. Adjust rendering in `src/components/post-teaser.js`:
+```diff
+ import React from "react"
++import { GatsbyImage } from "gatsby-plugin-image"
+
+ import Hashtag from "./hashtag"
+ import * as styles from "./post-teaser.module.css"
+```
+```diff
+   return (
+     <div className={styles.wrapper}>
+       <figure className={styles.figure}>
+-        <img src={post.image.file.url} alt={post.title} />
++        <GatsbyImage image={post.image.gatsbyImageData} alt={post.title} />
+         <figcaption className={styles.figcaption}>{post.title}</figcaption>
+       </figure>
+       <div className={styles.date}>Posted: {post.createdAt}</div>
+```

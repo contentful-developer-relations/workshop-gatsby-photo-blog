@@ -33,9 +33,14 @@ export const query = graphql`
         title
         slug
         image {
-          file {
-            url
-          }
+          gatsbyImageData(
+            aspectRatio: 1.778
+            width: 960
+            cropFocus: CENTER
+            layout: CONSTRAINED
+            resizingBehavior: FILL
+            placeholder: BLURRED
+          )
         }
         body {
           body
