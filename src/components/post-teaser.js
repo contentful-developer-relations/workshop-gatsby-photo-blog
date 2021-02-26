@@ -1,4 +1,6 @@
 import React from "react"
+import { Link } from "gatsby"
+
 import { GatsbyImage } from "gatsby-plugin-image"
 
 import Hashtag from "./hashtag"
@@ -6,7 +8,7 @@ import * as styles from "./post-teaser.module.css"
 
 const PostTeaser = ({ post }) => {
   return (
-    <div className={styles.wrapper}>
+    <Link to={`/post/${post.slug}`} className={styles.wrapper}>
       <figure className={styles.figure}>
         <GatsbyImage image={post.image.gatsbyImageData} alt={post.title} />
         <figcaption className={styles.figcaption}>{post.title}</figcaption>
@@ -17,7 +19,7 @@ const PostTeaser = ({ post }) => {
           <Hashtag key={hashtag} title={hashtag} />
         ))}
       </div>
-    </div>
+    </Link>
   )
 }
 
