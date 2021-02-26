@@ -18,7 +18,10 @@ function PageTemplate({ data, pageContext }) {
       </div>
       <div className={styles.title}>{post.title}</div>
       <div className={styles.date}>Posted: {post.createdAt}</div>
-      <div className={styles.body}>{post.body.body}</div>
+      <div
+        className={styles.body}
+        dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }}
+      />
       <div className={styles.hashtags}>
         {post.hashtags.map(hashtag => (
           <Hashtag key={hashtag} title={hashtag} />
@@ -36,7 +39,9 @@ export const pageQuery = graphql`
       id
       title
       body {
-        body
+        childMarkdownRemark {
+          html
+        }
       }
       hashtags
       image {

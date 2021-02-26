@@ -405,3 +405,64 @@ export const pageQuery = graphql`
    )
  }
 ```
+
+# Step 4b - Render markdown
+
+1. Install Remark transformer plugin for markdonw transformation: `npm i gatsby-transformer-remark`
+2. Add `gatsby-transformer-remark` to the plugins in your `gatsby-config.js`
+3. Render post body markdown as HTML
+
+`./src/templates/post.js`
+```diff
+       </div>
+       <div className={styles.title}>{post.title}</div>
+       <div className={styles.date}>Posted: {post.createdAt}</div>
+-      <div className={styles.body}>{post.body.body}</div>
++      <div
++        className={styles.body}
++        dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }}
++      />
+       <div className={styles.hashtags}>
+         {post.hashtags.map(hashtag => (
+           <Hashtag key={hashtag} title={hashtag} />
+...
+       id
+       title
+       body {
+-        body
++        childMarkdownRemark {
++          html
++        }
+       }
+       hashtags
+       image {
+```
+
+4. Render body in teaser as excerpt
+
+`./src/components/post-teaser.js`
+```diff
+         <figcaption className={styles.figcaption}>{post.title}</figcaption>
+       </figure>
+       <div className={styles.date}>Posted: {post.createdAt}</div>
++      <div className={styles.excerpt}>
++        {post.body.childMarkdownRemark.excerpt}
++      </div>
+       <div className={styles.hashtags}>
+         {post.hashtags.map(hashtag => (
+           <Hashtag key={hashtag} title={hashtag} />
+```
+
+`./src/templates/post-listing.js`
+```diff
+           )
+         }
+         body {
+-          body
++          childMarkdownRemark {
++            excerpt(format: PLAIN, truncate: false, pruneLength: 60)
++          }
+         }
+         hashtags
+         createdAt(formatString: "MMMM Do YYYY, H:mm")
+```

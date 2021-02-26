@@ -14,6 +14,9 @@ const PostTeaser = ({ post }) => {
         <figcaption className={styles.figcaption}>{post.title}</figcaption>
       </figure>
       <div className={styles.date}>Posted: {post.createdAt}</div>
+      <div className={styles.excerpt}>
+        {post.body.childMarkdownRemark.excerpt}
+      </div>
       <div className={styles.hashtags}>
         {post.hashtags.map(hashtag => (
           <Hashtag key={hashtag} title={hashtag} />
