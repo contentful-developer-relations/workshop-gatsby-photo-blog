@@ -6,6 +6,7 @@
   "author": "Benedikt Rötsch <benedikt@techboi.io>",
   "dependencies": {
     "gatsby": "next",
+    "gatsby-awesome-pagination": "^0.3.6",
     "gatsby-plugin-gatsby-cloud": "next",
     "gatsby-plugin-manifest": "next",
     "gatsby-plugin-offline": "next",

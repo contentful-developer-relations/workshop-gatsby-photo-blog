@@ -1,13 +1,13 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostTeaser from "../components/post-teaser"
 
-import * as styles from "./index.module.css"
+import * as styles from "./post-listing.module.css"
 
-const IndexPage = ({ data }) => {
+const PostListingTemplate = ({ data, pageContext }) => {
   const posts = data.allContentfulPost.nodes
 
   return (
@@ -20,15 +20,27 @@ const IndexPage = ({ data }) => {
           <PostTeaser post={post} key={post.slug} />
         ))}
       </div>
+      <div className={styles.pagination}>
+        {pageContext.previousPagePath && (
+          <Link to={pageContext.previousPagePath}>◂ Previous</Link>
+        )}
+        {pageContext.nextPagePath && (
+          <Link to={pageContext.nextPagePath}>Next ▸</Link>
+        )}
+      </div>
     </Layout>
   )
 }
 
-export default IndexPage
+export default PostListingTemplate
 
-export const query = graphql`
-  query IndexQuery {
-    allContentfulPost {
+export const pageQuery = graphql`
+  query PostListingQuery($skip: Int!, $limit: Int!) {
+    allContentfulPost(
+      sort: { fields: [createdAt], order: DESC }
+      skip: $skip
+      limit: $limit
+    ) {
       nodes {
         title
         slug
