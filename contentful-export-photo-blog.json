@@ -1,0 +1,1352 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "id": "post",
+        "type": "ContentType",
+        "createdAt": "2021-02-26T10:22:59.584Z",
+        "updatedAt": "2021-02-26T10:23:00.436Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2021-02-26T10:23:00.436Z",
+        "firstPublishedAt": "2021-02-26T10:23:00.436Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        }
+      },
+      "displayField": "title",
+      "name": "Post",
+      "description": "",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Title",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slug",
+          "name": "Slug",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "unique": true
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "image",
+          "name": "Image",
+          "type": "Link",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "body",
+          "name": "Body",
+          "type": "Text",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "hashtags",
+          "name": "Hashtags",
+          "type": "Array",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Symbol",
+            "validations": [
+              {
+                "regexp": {
+                  "pattern": "^[a-zA-Z0-9-]+$",
+                  "flags": null
+                },
+                "message": "Hashtags should only contain lower and upper case letters, numbers and dashes as word separator."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "tags": [
+  ],
+  "editorInterfaces": [
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "4r21sr7krk17",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 2,
+        "createdAt": "2021-02-26T10:23:00.615Z",
+        "createdBy": {
+          "sys": {
+            "id": "3kAm87h0Ldjbc9hxrtVdLH",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2021-02-26T10:23:01.200Z",
+        "updatedBy": {
+          "sys": {
+            "id": "3kAm87h0Ldjbc9hxrtVdLH",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "post",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "title",
+          "widgetId": "singleLine",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "slug",
+          "widgetId": "slugEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "image",
+          "settings": {
+            "showLinkEntityAction": true,
+            "showCreateEntityAction": true
+          },
+          "widgetId": "assetLinkEditor",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "body",
+          "widgetId": "markdown",
+          "widgetNamespace": "builtin"
+        },
+        {
+          "fieldId": "hashtags",
+          "widgetId": "tagEditor",
+          "widgetNamespace": "builtin"
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "id": "3vjmg7kwnHnLbnWaaCskR5",
+        "type": "Entry",
+        "createdAt": "2021-02-26T10:36:06.066Z",
+        "updatedAt": "2021-02-26T10:39:39.441Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 13,
+        "publishedAt": "2021-02-26T10:39:39.441Z",
+        "firstPublishedAt": "2021-02-26T10:39:39.441Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 14,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "post"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "Hiking the mountains"
+        },
+        "slug": {
+          "en-US": "hiking-the-mountains"
+        },
+        "image": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "3sJCghDaXZfrU6efGkjGpM"
+            }
+          }
+        },
+        "body": {
+          "en-US": "Last summer me and my friends went to the __magical__ mountain range and did some awesome hiking. We got sunburn, but it was fun!"
+        },
+        "hashtags": {
+          "en-US": [
+            "mountains",
+            "hiking",
+            "fun",
+            "nature",
+            "friends",
+            "sun",
+            "sunburn",
+            "sunlovers",
+            "people-on-social-media-tend-to-use-way-to-long-hashtags"
+          ]
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "id": "1ke9vGXGU7FKNoTwi2DKMv",
+        "type": "Entry",
+        "createdAt": "2021-02-26T10:37:48.140Z",
+        "updatedAt": "2021-02-26T10:39:35.224Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 11,
+        "publishedAt": "2021-02-26T10:39:35.224Z",
+        "firstPublishedAt": "2021-02-26T10:39:35.224Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 12,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "post"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "Relaxing at the bay"
+        },
+        "slug": {
+          "en-US": "relaxing-at-the-bay"
+        },
+        "image": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "28p81wz9LjSfyPYCgZ7Q0f"
+            }
+          }
+        },
+        "body": {
+          "en-US": "The view from our apartement was amazing. We could not imagine a better place to relax after a long hike."
+        },
+        "hashtags": {
+          "en-US": [
+            "water",
+            "ocean",
+            "bay",
+            "fun",
+            "nature",
+            "mountains",
+            "houses",
+            "some-joke-nobody-understands-but-your-closest-friends"
+          ]
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "id": "71fPfkCVsCLpN3bVJvMkz0",
+        "type": "Entry",
+        "createdAt": "2021-02-26T10:39:40.944Z",
+        "updatedAt": "2021-02-26T10:41:08.496Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 14,
+        "publishedAt": "2021-02-26T10:41:08.496Z",
+        "firstPublishedAt": "2021-02-26T10:41:08.496Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 15,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "post"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "A day in the woods"
+        },
+        "slug": {
+          "en-US": "a-day-in-the-woods"
+        },
+        "image": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "6D5TX702ztdt5JOMaCTSON"
+            }
+          }
+        },
+        "body": {
+          "en-US": "Nobody expected the forrest to be such a *mystical* place. To bad we could only stay for 42 minutes.\n\nHow Ghandi would say it:\n\n> Be the change that you wish to see in the world"
+        },
+        "hashtags": {
+          "en-US": [
+            "forrest",
+            "trees",
+            "hiking",
+            "nature",
+            "mystic",
+            "ghandi",
+            "hashtags-are-great"
+          ]
+        }
+      }
+    }
+  ],
+  "assets": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "id": "28p81wz9LjSfyPYCgZ7Q0f",
+        "type": "Asset",
+        "createdAt": "2021-02-26T10:35:06.661Z",
+        "updatedAt": "2021-02-26T10:35:56.930Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 2,
+        "publishedAt": "2021-02-26T10:35:56.930Z",
+        "firstPublishedAt": "2021-02-26T10:35:56.930Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 3,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "lyle-wilkinson-bIaIVTSseP8-unsplash"
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/4r21sr7krk17/28p81wz9LjSfyPYCgZ7Q0f/6f90be761759cf6c96f12a59023c119d/lyle-wilkinson-bIaIVTSseP8-unsplash.jpg",
+            "details": {
+              "size": 2727090,
+              "image": {
+                "width": 4001,
+                "height": 3000
+              }
+            },
+            "fileName": "lyle-wilkinson-bIaIVTSseP8-unsplash.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "id": "3sJCghDaXZfrU6efGkjGpM",
+        "type": "Asset",
+        "createdAt": "2021-02-26T10:35:06.662Z",
+        "updatedAt": "2021-02-26T10:35:57.035Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 2,
+        "publishedAt": "2021-02-26T10:35:57.035Z",
+        "firstPublishedAt": "2021-02-26T10:35:57.035Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 3,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "dannii-coughlan-gI3Ov1iWEHU-unsplash"
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/4r21sr7krk17/3sJCghDaXZfrU6efGkjGpM/16216ed36acdd37d539eb4f9acac4561/dannii-coughlan-gI3Ov1iWEHU-unsplash.jpg",
+            "details": {
+              "size": 2730390,
+              "image": {
+                "width": 6000,
+                "height": 4000
+              }
+            },
+            "fileName": "dannii-coughlan-gI3Ov1iWEHU-unsplash.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "id": "6D5TX702ztdt5JOMaCTSON",
+        "type": "Asset",
+        "createdAt": "2021-02-26T10:35:06.664Z",
+        "updatedAt": "2021-02-26T10:35:57.074Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 2,
+        "publishedAt": "2021-02-26T10:35:57.074Z",
+        "firstPublishedAt": "2021-02-26T10:35:57.074Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 3,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        }
+      },
+      "fields": {
+        "title": {
+          "en-US": "steven-kamenar-MMJx78V7xS8-unsplash"
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/4r21sr7krk17/6D5TX702ztdt5JOMaCTSON/a2cb2349043ed59b9265076d6369584f/steven-kamenar-MMJx78V7xS8-unsplash.jpg",
+            "details": {
+              "size": 2522401,
+              "image": {
+                "width": 3264,
+                "height": 2448
+              }
+            },
+            "fileName": "steven-kamenar-MMJx78V7xS8-unsplash.jpg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    }
+  ],
+  "locales": [
+    {
+      "name": "English (United States)",
+      "code": "en-US",
+      "fallbackCode": null,
+      "default": true,
+      "contentManagementApi": true,
+      "contentDeliveryApi": true,
+      "optional": false,
+      "sys": {
+        "type": "Locale",
+        "id": "7j0abph9Cs6V00sXbBeviu",
+        "version": 1,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "environment": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Environment",
+            "id": "master",
+            "uuid": "50800cdd-689b-409e-bd10-e7df7c2f9465"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "createdAt": "2021-02-26T10:18:47Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedAt": "2021-02-26T10:18:47Z"
+      }
+    }
+  ],
+  "webhooks": [
+  ],
+  "roles": [
+    {
+      "name": "Author",
+      "description": "Allows editing of content",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": [
+            "create"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "create"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "7j1H6ZM4g0mjdvkADzkYvk",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "createdAt": "2021-02-26T10:18:47Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedAt": "2021-02-26T10:18:47Z"
+      }
+    },
+    {
+      "name": "Editor",
+      "description": "Allows editing, publishing and archiving of content",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": "all",
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": "all",
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "7j2guK4qK1JB7RD3sCcb5k",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "createdAt": "2021-02-26T10:18:47Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedAt": "2021-02-26T10:18:47Z"
+      }
+    },
+    {
+      "name": "Freelancer",
+      "description": "Allows only editing of content they created themselves",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": [
+            "create"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "create"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              },
+              {
+                "paths": [
+                  {
+                    "doc": "fields.%.%"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "delete"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              },
+              {
+                "paths": [
+                  {
+                    "doc": "fields.%.%"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "delete"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "7j2JqLG0lWS67Hs4qt9q6i",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "createdAt": "2021-02-26T10:18:47Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedAt": "2021-02-26T10:18:47Z"
+      }
+    },
+    {
+      "name": "Translator",
+      "description": "Allows editing of localized fields in the specified language",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              },
+              {
+                "paths": [
+                  {
+                    "doc": "fields.%.%"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              },
+              {
+                "paths": [
+                  {
+                    "doc": "fields.%.%"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "7j3gKhiPJg4oaNK8pETE7Y",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "4r21sr7krk17"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "createdAt": "2021-02-26T10:18:47Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "3kAm87h0Ldjbc9hxrtVdLH"
+          }
+        },
+        "updatedAt": "2021-02-26T10:18:47Z"
+      }
+    }
+  ]
+}
