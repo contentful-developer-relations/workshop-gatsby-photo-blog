@@ -72,3 +72,65 @@ query MyQuery {
 ```
 
 In the next step we are going to render these posts on the home page.
+
+# Step 2 - Render posts on home
+
+1. Add a page query to `src/pages/index.js` and render the results:
+
+```diff
+ import React from "react"
++import { graphql } from "gatsby"
+
+ import Layout from "../components/layout"
+ import SEO from "../components/seo"
++import PostTeaser from "../components/post-teaser"
+
+-const IndexPage = () => (
+-  <Layout>
+-    <SEO title="Home" />
+-    <h1>Hi people</h1>
+-    <p>Welcome to your new Gatsby &amp; Contentful based photo blog.</p>
+-  </Layout>
+-)
++import * as styles from "./index.module.css"
++
++const IndexPage = ({ data }) => {
++  const posts = data.allContentfulPost.nodes
++
++  return (
++    <Layout>
++      <SEO title="Home" />
++      <h1>Hi people</h1>
++      <p>Welcome to your new Gatsby &amp; Contentful based photo blog.</p>
++      <div className={styles.postsWrapper}>
++        {posts.map(post => (
++          <PostTeaser post={post} key={post.slug} />
++        ))}
++      </div>
++    </Layout>
++  )
++}
+
+ export default IndexPage
++
++export const query = graphql`
++  query IndexQuery {
++    allContentfulPost {
++      nodes {
++        title
++        slug
++        image {
++          file {
++            url
++          }
++        }
++        body {
++          body
++        }
++        hashtags
++        createdAt(formatString: "MMMM Do YYYY, H:mm")
++      }
++    }
++  }
++`
+```
