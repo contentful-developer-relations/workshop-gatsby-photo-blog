@@ -466,3 +466,72 @@ export const pageQuery = graphql`
          hashtags
          createdAt(formatString: "MMMM Do YYYY, H:mm")
 ```
+
+# Step 5 - Add detail page pagination
+
+1. Add paths to previous and next post to the post detail page context
+
+`gatsby-node.js`
+```diff
+   })
+
+   // Detail pages
+-  blogPosts.forEach(post => {
++  blogPosts.forEach((post, i) => {
+     const { id, slug } = post
+
+     createPage({
+...
+       component: path.resolve(`./src/templates/post.js`),
+       context: {
+         id,
++        previousPost: blogPosts?.[i - 1] && `/post/${blogPosts[i - 1].slug}`,
++        nextPost: blogPosts?.[i + 1] && `/post/${blogPosts[i + 1].slug}`,
+       },
+     })
+   })
+```
+
+2. Render previous and next buttons based on page context data
+
+`./src/templates/post.js`
+```diff
+ import React from "react"
+-import { graphql } from "gatsby"
++import { graphql, Link } from "gatsby"
+ import { GatsbyImage } from "gatsby-plugin-image"
+
+ import Layout from "../components/layout"
+...
+ function PageTemplate({ data, pageContext }) {
+   const post = data.contentfulPost
+
++  const { previousPost, nextPost } = pageContext
++
+   return (
+     <Layout>
+       <SEO title={post.title} />
+       <div className={styles.imageWrapper}>
+         <GatsbyImage image={post.image.gatsbyImageData} alt={post.title} />
++        {previousPost && (
++          <Link
++            to={previousPost}
++            className={`${styles.controls} ${styles.controlPrevious}`}
++            title="Previous post"
++          >
++            ◀
++          </Link>
++        )}
++        {nextPost && (
++          <Link
++            to={nextPost}
++            className={`${styles.controls} ${styles.controlNext}`}
++            title="Next post"
++          >
++            ▶
++          </Link>
++        )}
+       </div>
+       <div className={styles.title}>{post.title}</div>
+       <div className={styles.date}>Posted: {post.createdAt}</div>
+```
