@@ -579,3 +579,149 @@ export const pageQuery = graphql`
          {previousPost && (
            <Link
 ```
+
+# Step 6 - Hashtag listing pages
+
+1. Create the new template for the hashtag listing pages.
+`./src/templates/hashtag-listing.js`
+```js
+import React from "react"
+import { graphql, Link } from "gatsby"
+
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import PostTeaser from "../components/post-teaser"
+
+import * as styles from "./post-listing.module.css"
+
+const TagListingTemplate = ({ data, pageContext }) => {
+  const posts = data.allContentfulPost.nodes
+  const { hashtag } = pageContext
+  const title = `#${hashtag}`
+
+  return (
+    <Layout title={title}>
+      <SEO title={title} />
+      <div className={styles.postsWrapper}>
+        {posts.map(post => (
+          <PostTeaser post={post} key={post.slug} />
+        ))}
+      </div>
+      <div className={styles.pagination}>
+        {pageContext.previousPagePath && (
+          <Link to={pageContext.previousPagePath}>◂ Previous</Link>
+        )}
+        {pageContext.nextPagePath && (
+          <Link to={pageContext.nextPagePath}>Next ▸</Link>
+        )}
+      </div>
+    </Layout>
+  )
+}
+
+export default TagListingTemplate
+
+export const pageQuery = graphql`
+  query TagListingQuery($skip: Int!, $limit: Int!, $hashtag: String!) {
+    allContentfulPost(
+      filter: { hashtags: { eq: $hashtag } }
+      sort: { fields: [createdAt], order: DESC }
+      skip: $skip
+      limit: $limit
+    ) {
+      nodes {
+        title
+        slug
+        image {
+          gatsbyImageData(
+            aspectRatio: 1.778
+            width: 960
+            cropFocus: CENTER
+            layout: CONSTRAINED
+            resizingBehavior: FILL
+            placeholder: BLURRED
+          )
+        }
+        body {
+          childMarkdownRemark {
+            excerpt(format: PLAIN, truncate: false, pruneLength: 60)
+          }
+        }
+        hashtags
+        createdAt(formatString: "MMMM Do YYYY, H:mm")
+      }
+    }
+  }
+`
+```
+
+2. Group posts by hashtag and create paginated pages
+
+`gatsby-node.js`
+```diff
+             id
+             title
+             slug
++            hashtags
+           }
+         }
+       }
+...
+     component: path.resolve("./src/templates/post-listing.js"),
+   })
+
++  const hashtagsMap = new Map()
++
+   // Detail pages
+   blogPosts.forEach((post, i) => {
+-    const { id, slug } = post
++    const { id, slug, hashtags } = post
++
++    // Gather unique hashtags
++    hashtags.map(hashtag => {
++      const postList = hashtagsMap.get(hashtag) || []
++      postList.push(post)
++      hashtagsMap.set(hashtag, postList)
++    })
+
+     createPage({
+       path: `/post/${slug}`,
+...
+       },
+     })
+   })
++
++  // Hashtag listing pages
++  hashtagsMap.forEach((postList, hashtag) => {
++    paginate({
++      createPage,
++      items: postList,
++      itemsPerPage: 2,
++      pathPrefix: `/hashtag/${hashtag}`,
++      component: path.resolve("./src/templates/hashtag-listing.js"),
++      context: { hashtag },
++    })
++  })
+ }
+```
+
+3. Link hashtag component to the listing pages
+
+`./src/components/hashtag.js`
+```diff
+ import React from "react"
++import { Link } from "gatsby"
+
+ import * as styles from "./hashtag.module.css"
+
+ const Hashtag = ({ title }) => {
+-  return <div className={styles.tag}>#{title}</div>
++  return (
++    <Link to={`/hashtag/${title}`} className={styles.tag}>
++      #{title}
++    </Link>
++  )
+ }
+
+ export default Hashtag
+```
