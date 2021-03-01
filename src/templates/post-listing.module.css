@@ -1,0 +1,20 @@
+.postsWrapper {
+  display: grid;
+  grid-gap: 2rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.pagination a {
+  border-radius: 1rem;
+  background: #eee;
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  margin: 0 0.25rem 0.5rem 0;
+  color: black;
+  text-decoration: none;
+}

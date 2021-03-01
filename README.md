@@ -178,3 +178,109 @@ Render multiple variants of the post images with Contentfuls Image API and the f
        </figure>
        <div className={styles.date}>Posted: {post.createdAt}</div>
 ```
+
+
+# Step 3 - Add pagination
+
+1. Move `./src/pages/index.html` to `./src/templates/post-listing.html`. Move and rename the `index.module.css` as well.
+2. Install the plugin: `npm i gatsby-awesome-pagination`
+3. Create the listing pages:
+
+gatsby-node.js
+```js
+/**
+ * Implement Gatsby's Node APIs in this file.
+ *
+ * See: https://www.gatsbyjs.com/docs/node-apis/
+ */
+const path = require("path")
+
+const { paginate } = require("gatsby-awesome-pagination")
+
+exports.createPages = async ({ actions, graphql }) => {
+  const { createPage } = actions
+
+  const result = await graphql(
+    `
+      query IndexQuery {
+        allContentfulPost(sort: { fields: [createdAt], order: DESC }) {
+          nodes {
+            title
+            slug
+          }
+        }
+      }
+    `
+  )
+
+  if (result.errors) {
+    throw result.errors
+  }
+
+  const blogPosts = result.data.allContentfulPost.nodes
+
+  paginate({
+    createPage,
+    items: blogPosts,
+    itemsPerPage: 2,
+    pathPrefix: "/",
+    component: path.resolve("./src/templates/post-listing.js"),
+  })
+}
+```
+
+4. Adjust the query and rendering of the freshly renamed `post-listing.js`:
+
+* Add sort, skip and limit filters to the page query to ensure we get only posts for the desired page
+* Add pagination links to allow navigation back and forth
+
+```diff
+ import React from "react"
+-import { graphql } from "gatsby"
++import { graphql, Link } from "gatsby"
+
+ import Layout from "../components/layout"
+ import SEO from "../components/seo"
+ import PostTeaser from "../components/post-teaser"
+
+-import * as styles from "./index.module.css"
++import * as styles from "./post-listing.module.css"
+
+-const IndexPage = ({ data }) => {
++const PostListingTemplate = ({ data, pageContext }) => {
+   const posts = data.allContentfulPost.nodes
+
+   return (
+...
+           <PostTeaser post={post} key={post.slug} />
+         ))}
+       </div>
++      <div className={styles.pagination}>
++        {pageContext.previousPagePath && (
++          <Link to={pageContext.previousPagePath}>Previous</Link>
++        )}
++        {pageContext.nextPagePath && (
++          <Link to={pageContext.nextPagePath}>Next</Link>
++        )}
++      </div>
+     </Layout>
+   )
+ }
+
+-export default IndexPage
++export default PostListingTemplate
+
+-export const query = graphql`
+-  query IndexQuery {
+-    allContentfulPost {
++export const pageQuery = graphql`
++  query PostListingQuery($skip: Int!, $limit: Int!) {
++    allContentfulPost(
++      sort: { fields: [createdAt], order: DESC }
++      skip: $skip
++      limit: $limit
++    ) {
+       nodes {
+         title
+         slug
+```
