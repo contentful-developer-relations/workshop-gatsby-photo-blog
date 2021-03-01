@@ -39,7 +39,7 @@ exports.createPages = async ({ actions, graphql }) => {
   })
 
   // Detail pages
-  blogPosts.forEach(post => {
+  blogPosts.forEach((post, i) => {
     const { id, slug } = post
 
     createPage({
@@ -47,6 +47,8 @@ exports.createPages = async ({ actions, graphql }) => {
       component: path.resolve(`./src/templates/post.js`),
       context: {
         id,
+        previousPost: blogPosts[i - 1] && `/post/${blogPosts[i - 1].slug}`,
+        nextPost: blogPosts[i + 1] && `/post/${blogPosts[i + 1].slug}`,
       },
     })
   })
