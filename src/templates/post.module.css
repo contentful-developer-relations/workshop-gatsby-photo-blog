@@ -1,0 +1,20 @@
+.imageWrapper {
+  box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
+}
+
+.title {
+  font-size: 2rem;
+  line-height: 5rem;
+}
+
+.date {
+  font-size: 0.8em;
+}
+
+.hashtags {
+  margin-top: 1rem;
+}
+
+.body {
+  margin: 1rem 0;
+}

@@ -284,3 +284,185 @@ exports.createPages = async ({ actions, graphql }) => {
          title
          slug
 ```
+
+# Step 4 - Create a detail page for every post
+
+1. Create a new template for the post detail pages:
+
+`./src/templates/post.js`
+```js
+import React from "react"
+import { graphql } from "gatsby"
+import { GatsbyImage } from "gatsby-plugin-image"
+
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import Hashtag from "../components/hashtag"
+import * as styles from "./post.module.css"
+
+function PageTemplate({ data, pageContext }) {
+  const post = data.contentfulPost
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <div className={styles.imageWrapper}>
+        <GatsbyImage image={post.image.gatsbyImageData} alt={post.title} />
+      </div>
+      <div className={styles.title}>{post.title}</div>
+      <div className={styles.date}>Posted: {post.createdAt}</div>
+      <div
+        className={styles.body}
+        dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }}
+      />
+      <div className={styles.hashtags}>
+        {post.hashtags.map(hashtag => (
+          <Hashtag key={hashtag} title={hashtag} />
+        ))}
+      </div>
+    </Layout>
+  )
+}
+
+export default PageTemplate
+
+export const pageQuery = graphql`
+  query postQuery($id: String!) {
+    contentfulPost(id: { eq: $id }) {
+      id
+      title
+      body {
+        childMarkdownRemark {
+          html
+        }
+      }
+      hashtags
+      image {
+        gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
+      }
+      createdAt(formatString: "MMMM Do YYYY, H:mm")
+    }
+  }
+`
+```
+2. Use the template to create the detail pages
+
+`gatsby-node.js`
+```diff
+       query IndexQuery {
+         allContentfulPost(sort: { fields: [createdAt], order: DESC }) {
+           nodes {
++            id
+             title
+             slug
+           }
+         }
+...
+     pathPrefix: "/",
+     component: path.resolve("./src/templates/post-listing.js"),
+   })
++
++  // Detail pages
++  blogPosts.forEach(post => {
++    const { id, slug } = post
++
++    createPage({
++      path: `/post/${slug}`,
++      component: path.resolve(`./src/templates/post.js`),
++      context: {
++        id,
++      },
++    })
++  })
+ }
+```
+3. Link the posts from the listing pages
+
+`./src/templates/post-teaser.js`
+```diff
+@@ -1,4 +1,6 @@
+ import React from "react"
++import { Link } from "gatsby"
++
+ import { GatsbyImage } from "gatsby-plugin-image"
+
+ import Hashtag from "./hashtag"
+...
+
+ const PostTeaser = ({ post }) => {
+   return (
+-    <div className={styles.wrapper}>
++    <Link to={`/post/${post.slug}`} className={styles.wrapper}>
+       <figure className={styles.figure}>
+         <GatsbyImage image={post.image.gatsbyImageData} alt={post.title} />
+         <figcaption className={styles.figcaption}>{post.title}</figcaption>
+...
+           <Hashtag key={hashtag} title={hashtag} />
+         ))}
+       </div>
+-    </div>
++    </Link>
+   )
+ }
+```
+
+# Step 4b - Render markdown
+
+1. Install Remark transformer plugin for markdonw transformation: `npm i gatsby-transformer-remark`
+2. Add `gatsby-transformer-remark` to the plugins in your `gatsby-config.js`
+3. Render post body markdown as HTML
+
+`./src/templates/post.js`
+```diff
+       </div>
+       <div className={styles.title}>{post.title}</div>
+       <div className={styles.date}>Posted: {post.createdAt}</div>
+-      <div className={styles.body}>{post.body.body}</div>
++      <div
++        className={styles.body}
++        dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }}
++      />
+       <div className={styles.hashtags}>
+         {post.hashtags.map(hashtag => (
+           <Hashtag key={hashtag} title={hashtag} />
+...
+       id
+       title
+       body {
+-        body
++        childMarkdownRemark {
++          html
++        }
+       }
+       hashtags
+       image {
+```
+
+4. Render body in teaser as excerpt
+
+`./src/components/post-teaser.js`
+```diff
+         <figcaption className={styles.figcaption}>{post.title}</figcaption>
+       </figure>
+       <div className={styles.date}>Posted: {post.createdAt}</div>
++      <div className={styles.excerpt}>
++        {post.body.childMarkdownRemark.excerpt}
++      </div>
+       <div className={styles.hashtags}>
+         {post.hashtags.map(hashtag => (
+           <Hashtag key={hashtag} title={hashtag} />
+```
+
+`./src/templates/post-listing.js`
+```diff
+           )
+         }
+         body {
+-          body
++          childMarkdownRemark {
++            excerpt(format: PLAIN, truncate: false, pruneLength: 60)
++          }
+         }
+         hashtags
+         createdAt(formatString: "MMMM Do YYYY, H:mm")
+```

@@ -15,6 +15,7 @@ exports.createPages = async ({ actions, graphql }) => {
       query PostsQuery {
         allContentfulPost(sort: { fields: [createdAt], order: DESC }) {
           nodes {
+            id
             title
             slug
           }
@@ -35,5 +36,18 @@ exports.createPages = async ({ actions, graphql }) => {
     itemsPerPage: 2,
     pathPrefix: "/",
     component: path.resolve("./src/templates/post-listing.js"),
+  })
+
+  // Detail pages
+  blogPosts.forEach(post => {
+    const { id, slug } = post
+
+    createPage({
+      path: `/post/${slug}`,
+      component: path.resolve(`./src/templates/post.js`),
+      context: {
+        id,
+      },
+    })
   })
 }

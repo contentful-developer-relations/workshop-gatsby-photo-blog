@@ -55,7 +55,9 @@ export const pageQuery = graphql`
           )
         }
         body {
-          body
+          childMarkdownRemark {
+            excerpt(format: PLAIN, truncate: false, pruneLength: 60)
+          }
         }
         hashtags
         createdAt(formatString: "MMMM Do YYYY, H:mm")

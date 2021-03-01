@@ -43,5 +43,6 @@ module.exports = {
         environment: process.env.CONTENTFUL_ENVIRONMENT || "master",
       },
     },
+    `gatsby-transformer-remark`,
   ],
 }
