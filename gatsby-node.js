@@ -18,6 +18,7 @@ exports.createPages = async ({ actions, graphql }) => {
             id
             title
             slug
+            hashtags
           }
         }
       }
@@ -38,9 +39,18 @@ exports.createPages = async ({ actions, graphql }) => {
     component: path.resolve("./src/templates/post-listing.js"),
   })
 
+  const hashtagsMap = new Map()
+
   // Detail pages
   blogPosts.forEach((post, i) => {
-    const { id, slug } = post
+    const { id, slug, hashtags } = post
+
+    // Gather unique hashtags
+    hashtags.map(hashtag => {
+      const postList = hashtagsMap.get(hashtag) || []
+      postList.push(post)
+      hashtagsMap.set(hashtag, postList)
+    })
 
     createPage({
       path: `/post/${slug}`,
@@ -50,6 +60,18 @@ exports.createPages = async ({ actions, graphql }) => {
         previousPost: blogPosts[i - 1] && `/post/${blogPosts[i - 1].slug}`,
         nextPost: blogPosts[i + 1] && `/post/${blogPosts[i + 1].slug}`,
       },
+    })
+  })
+
+  // Hashtag listing pages
+  hashtagsMap.forEach((postList, hashtag) => {
+    paginate({
+      createPage,
+      items: postList,
+      itemsPerPage: 2,
+      pathPrefix: `/hashtag/${hashtag}`,
+      component: path.resolve("./src/templates/hashtag-listing.js"),
+      context: { hashtag },
     })
   })
 }
