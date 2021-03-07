@@ -36,8 +36,8 @@ export default TagListingTemplate
 
 export const pageQuery = graphql`
   query TagListingQuery($skip: Int!, $limit: Int!, $hashtag: String!) {
-    allContentfulPost(
-      filter: { hashtags: { eq: $hashtag } }
+    allContentfulBlogPost(
+      filter: { tags: { eq: $hashtag } }
       sort: { fields: [createdAt], order: DESC }
       skip: $skip
       limit: $limit
@@ -45,7 +45,7 @@ export const pageQuery = graphql`
       nodes {
         title
         slug
-        image {
+        heroImage {
           gatsbyImageData(
             aspectRatio: 1.778
             width: 960
@@ -60,7 +60,7 @@ export const pageQuery = graphql`
             excerpt(format: PLAIN, truncate: false, pruneLength: 60)
           }
         }
-        hashtags
+        tags
         createdAt(formatString: "MMMM Do YYYY, H:mm")
       }
     }

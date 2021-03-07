@@ -51,13 +51,15 @@ require("dotenv").config({
 1. Execute `npm start` and visit `htt`
 2. Run your first GraphQL query to see all the posts you just added to Contentful:
 
-```graphql
+```
 query MyQuery {
-  allContentfulPost {
+  allContentfulBlogPost {
     nodes {
       title
       slug
-      image {
+      id
+      tags
+      heroImage {
         file {
           fileName
         }
@@ -65,11 +67,12 @@ query MyQuery {
       body {
         body
       }
-      hashtags
     }
   }
 }
 ```
+
+
 
 In the next step we are going to render these posts on the home page.
 

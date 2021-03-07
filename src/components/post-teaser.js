@@ -10,7 +10,7 @@ const PostTeaser = ({ post }) => {
   return (
     <Link to={`/post/${post.slug}`} className={styles.wrapper}>
       <figure className={styles.figure}>
-        <GatsbyImage image={post.image.gatsbyImageData} alt={post.title} />
+        <GatsbyImage image={post.heroImage.gatsbyImageData} alt={post.title} />
         <figcaption className={styles.figcaption}>{post.title}</figcaption>
       </figure>
       <div className={styles.date}>Posted: {post.createdAt}</div>
@@ -18,7 +18,7 @@ const PostTeaser = ({ post }) => {
         {post.body.childMarkdownRemark.excerpt}
       </div>
       <div className={styles.hashtags}>
-        {post.hashtags.map(hashtag => (
+        {post.tags.map(hashtag => (
           <Hashtag key={hashtag} title={hashtag} />
         ))}
       </div>

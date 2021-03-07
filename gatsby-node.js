@@ -13,12 +13,12 @@ exports.createPages = async ({ actions, graphql }) => {
   const result = await graphql(
     `
       query PostsQuery {
-        allContentfulPost(sort: { fields: [createdAt], order: DESC }) {
+        allContentfulBlogPost(sort: { fields: [createdAt], order: DESC }) {
           nodes {
             id
             title
             slug
-            hashtags
+            tags
           }
         }
       }
@@ -29,7 +29,7 @@ exports.createPages = async ({ actions, graphql }) => {
     throw result.errors
   }
 
-  const blogPosts = result.data.allContentfulPost.nodes
+  const blogPosts = result.data.allContentfulBlogPost.nodes
 
   paginate({
     createPage,
@@ -43,10 +43,10 @@ exports.createPages = async ({ actions, graphql }) => {
 
   // Detail pages
   blogPosts.forEach((post, i) => {
-    const { id, slug, hashtags } = post
+    const { id, slug, tags } = post
 
     // Gather unique hashtags
-    hashtags.map(hashtag => {
+    tags.map(hashtag => {
       const postList = hashtagsMap.get(hashtag) || []
       postList.push(post)
       hashtagsMap.set(hashtag, postList)

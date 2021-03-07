@@ -9,7 +9,7 @@ import Hashtag from "../components/hashtag"
 import * as styles from "./post.module.css"
 
 function PageTemplate({ data, pageContext }) {
-  const post = data.contentfulPost
+  const post = data.contentfulBlogPost
 
   const { previousPost, nextPost } = pageContext
 
@@ -31,7 +31,7 @@ function PageTemplate({ data, pageContext }) {
     <Layout title={post.title}>
       <SEO title={post.title} />
       <div {...swipeHandlers} className={styles.imageWrapper}>
-        <GatsbyImage image={post.image.gatsbyImageData} alt={post.title} />
+        <GatsbyImage image={post.heroImage.gatsbyImageData} alt={post.title} />
         {previousPost && (
           <Link
             to={previousPost}
@@ -58,7 +58,7 @@ function PageTemplate({ data, pageContext }) {
         dangerouslySetInnerHTML={{ __html: post.body.childMarkdownRemark.html }}
       />
       <div className={styles.hashtags}>
-        {post.hashtags.map(hashtag => (
+        {post.tags.map(hashtag => (
           <Hashtag key={hashtag} title={hashtag} />
         ))}
       </div>
@@ -70,7 +70,7 @@ export default PageTemplate
 
 export const pageQuery = graphql`
   query postQuery($id: String!) {
-    contentfulPost(id: { eq: $id }) {
+    contentfulBlogPost(id: { eq: $id }) {
       id
       title
       body {
@@ -78,8 +78,8 @@ export const pageQuery = graphql`
           html
         }
       }
-      hashtags
-      image {
+      tags
+      heroImage {
         gatsbyImageData(layout: FULL_WIDTH, placeholder: BLURRED)
       }
       createdAt(formatString: "MMMM Do YYYY, H:mm")

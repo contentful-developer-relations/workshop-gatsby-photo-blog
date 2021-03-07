@@ -8,7 +8,7 @@ import PostTeaser from "../components/post-teaser"
 import * as styles from "./post-listing.module.css"
 
 const PostListingTemplate = ({ data, pageContext }) => {
-  const posts = data.allContentfulPost.nodes
+  const posts = data.allContentfulBlogPost.nodes
 
   return (
     <Layout>
@@ -36,7 +36,7 @@ export default PostListingTemplate
 
 export const pageQuery = graphql`
   query PostListingQuery($skip: Int!, $limit: Int!) {
-    allContentfulPost(
+    allContentfulBlogPost(
       sort: { fields: [createdAt], order: DESC }
       skip: $skip
       limit: $limit
@@ -44,7 +44,7 @@ export const pageQuery = graphql`
       nodes {
         title
         slug
-        image {
+        heroImage {
           gatsbyImageData(
             aspectRatio: 1.778
             width: 960
@@ -59,7 +59,7 @@ export const pageQuery = graphql`
             excerpt(format: PLAIN, truncate: false, pruneLength: 60)
           }
         }
-        hashtags
+        tags
         createdAt(formatString: "MMMM Do YYYY, H:mm")
       }
     }
