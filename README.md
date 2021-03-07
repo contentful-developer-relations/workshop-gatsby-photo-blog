@@ -27,7 +27,7 @@ require("dotenv").config({
 1. Create new content delivery tokens via `https://app.contentful.com/spaces/YOUR_SPACE_ID/api/keys`
 1. Install our source plugin: `npm i gatsby-source-contentful`
 1. Duplicate `.env.example` to `.env.development` & `.env.production`
-1. Adjust these files .env files:
+1. Adjust these files .env files (NOTE. hints regarding .env.development are useless, only if you copy .env.production -> .env.development it works):
    * Both should contain your `Space ID`
    * `.env.development` should use your `Content Preview API - access token`
    * `.env.development` uncomment the line that sets the host to `https://cpa.contentful.com`
